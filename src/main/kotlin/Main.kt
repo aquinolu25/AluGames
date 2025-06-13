@@ -1,6 +1,7 @@
 package org.example
 
 import com.google.gson.Gson
+import com.google.gson.JsonSyntaxException
 import java.net.URI
 import java.net.http.HttpClient
 import java.net.http.HttpRequest
@@ -27,9 +28,15 @@ fun main() {
     println(json)
 
     val gson = Gson()
-    val meuInfoJogo = gson.fromJson(json, InfoJogo::class.java)
 
-    val meuJogo = Jogo(meuInfoJogo.info.title, meuInfoJogo.info.thumb)
-    println(meuJogo)
+    try {
+        val meuInfoJogo = gson.fromJson(json, InfoJogo::class.java)
+        println(meuInfoJogo)
+    } catch (e: JsonSyntaxException) {
+        val jogos: List<InfoJogo> = gson.fromJson(json, Array<InfoJogo>::class.java).toList()
+        jogos.forEach { jogo -> println(jogo) }
+    }
+
+
 
 }

@@ -31,10 +31,12 @@ fun main() {
 
     try {
         val meuInfoJogo = gson.fromJson(json, InfoJogo::class.java)
-        println(meuInfoJogo)
-    } catch (e: JsonSyntaxException) {
-        val jogos: List<InfoJogo> = gson.fromJson(json, Array<InfoJogo>::class.java).toList()
-        jogos.forEach { jogo -> println(jogo) }
+        val meuJogo = Jogo(meuInfoJogo.info.title, meuInfoJogo.info.thumb)
+        println(meuJogo)
+    } catch (ex: JsonSyntaxException) {
+        println("Sem retorno, tento outro id.")
+    } catch (ex: NullPointerException) {
+        println("Jogo não existe, tente outro id.")
     }
 
 

@@ -1,6 +1,7 @@
 package org.example
 
 import com.google.gson.Gson
+import com.google.gson.JsonParser
 import com.google.gson.JsonSyntaxException
 import java.net.URI
 import java.net.http.HttpClient
@@ -11,6 +12,8 @@ import java.util.Scanner
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 fun main() {
+    var meuJogo:Jogo? = null
+
     val sc = Scanner(System.`in`)
     println("Digite um código de jogo que deseja buscar: ")
     val busca = sc.nextLine()
@@ -25,20 +28,34 @@ fun main() {
         .send(request, HttpResponse.BodyHandlers.ofString())
 
     val json = response.body()
-    println(json)
+/*    println(json)*/
 
     val gson = Gson()
-
-    try {
+    
+    val resultado = runCatching {
         val meuInfoJogo = gson.fromJson(json, InfoJogo::class.java)
-        val meuJogo = Jogo(meuInfoJogo.info.title, meuInfoJogo.info.thumb)
-        println(meuJogo)
-    } catch (ex: JsonSyntaxException) {
-        println("Sem retorno, tento outro id.")
-    } catch (ex: NullPointerException) {
+        meuJogo = Jogo(meuInfoJogo.info.title, meuInfoJogo.info.thumb)
+    }
+
+    resultado.onFailure {
         println("Jogo não existe, tente outro id.")
     }
 
+    resultado.onSuccess {
+        println("Deseja inserir uma descrição personalizada para o jogo? S/N")
+        val opcao = sc.nextLine()
+        if (opcao.equals("S", true)) {
+            println("Insira a descrição personalizada para o jogo: ")
+            val descricaoPersonalizada = sc.nextLine()
+            meuJogo?.descricao = descricaoPersonalizada
+        } else {
+            meuJogo?.descricao = meuJogo?.titulo
+        }
+        println(meuJogo)
+    }
 
+    resultado.onSuccess {
+        println("Busca finalizada com sucesso.")
+    }
 
 }

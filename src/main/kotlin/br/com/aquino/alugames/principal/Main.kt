@@ -1,5 +1,6 @@
 package org.example.br.com.aquino.alugames.principal
 
+import br.com.aquino.alugames.modelo.Gamer
 import br.com.aquino.alugames.servicos.ConsumoApi
 import org.example.br.com.aquino.alugames.modelo.Jogo
 import java.util.*
@@ -7,6 +8,9 @@ import java.util.*
 fun main() {
 
     val sc = Scanner(System.`in`)
+    val gamer = Gamer.criarGamer(sc)
+    println("Cadastro concluído com sucesso!!! Dados do gamer:")
+    println(gamer)
 
     do {
         println("Digite um código de jogo que deseja buscar: ")
@@ -35,7 +39,7 @@ fun main() {
             } else {
                 meuJogo?.descricao = meuJogo?.titulo
             }
-            println(meuJogo)
+           gamer.jogosBuscados.add(meuJogo)
         }
 
         println("Deseja buscar um novo jogo? S/N")
@@ -43,5 +47,7 @@ fun main() {
 
     } while (resposta.equals("s", true))
 
+    println("Jogos buscados:")
+    println(gamer.jogosBuscados)
     println("Busca finalizada com sucesso.")
 }

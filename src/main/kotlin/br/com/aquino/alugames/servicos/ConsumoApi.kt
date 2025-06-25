@@ -1,6 +1,8 @@
 package br.com.aquino.alugames.servicos
 
+import br.com.aquino.alugames.modelo.Gamer
 import br.com.aquino.alugames.modelo.InfoGamerJson
+import br.com.aquino.alugames.utilitario.criaGamer
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import org.example.br.com.aquino.alugames.modelo.InfoJogo
@@ -29,7 +31,7 @@ class ConsumoApi {
         return meuInfoJogo
     }
 
-    fun buscaGamers( ): List<InfoGamerJson> {
+    fun buscaGamers( ): List<Gamer> {
         val endereco = "https://raw.githubusercontent.com/jeniblodev/arquivosJson/main/gamers.json"
 
         val client: HttpClient = HttpClient.newHttpClient()
@@ -40,12 +42,12 @@ class ConsumoApi {
             .send(request, HttpResponse.BodyHandlers.ofString())
 
         val json = response.body()
-
         val gson = Gson()
         val meuGamerTipo = object : TypeToken<List<InfoGamerJson>>(){}.type
         val listaGamer: List<InfoGamerJson> = gson.fromJson(json, meuGamerTipo)
+        val listaGamerConvertida = listaGamer.map { infoGamerJson -> infoGamerJson.criaGamer() }
 
-        return listaGamer
+        return listaGamerConvertida
     }
 
 }

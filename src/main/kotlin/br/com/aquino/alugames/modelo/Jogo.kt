@@ -15,6 +15,7 @@ data class Jogo(val titulo:String, val capa:String) {
         return "Meu jogo:\n" +
                 "Título: $titulo,\n" +
                 "Capa: $capa \n" +
+                "Preço: $preco\n" +
                 "Descricao: $descricao"
     }
 

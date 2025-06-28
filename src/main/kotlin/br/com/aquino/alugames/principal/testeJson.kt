@@ -1,6 +1,8 @@
 package br.com.aquino.alugames.principal
 
+import br.com.aquino.alugames.modelo.Periodo
 import br.com.aquino.alugames.servicos.ConsumoApi
+import java.time.LocalDate
 
 fun main() {
     val consumo = ConsumoApi()
@@ -16,6 +18,8 @@ fun main() {
     println(gamerCaroline)
     println(jogoResidentVillage)
 
-    val aluguel = gamerCaroline.alugaJogo(jogoResidentVillage)
+    val periodo = Periodo(LocalDate.now(), LocalDate.now().plusDays(7))
+
+    val aluguel = gamerCaroline.alugaJogo(jogoResidentVillage, periodo)
     println(aluguel)
 }

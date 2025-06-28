@@ -3,8 +3,8 @@ package br.com.aquino.alugames.servicos
 import br.com.aquino.alugames.modelo.Gamer
 import br.com.aquino.alugames.modelo.InfoGamerJson
 import br.com.aquino.alugames.modelo.InfoJogoJson
-import br.com.aquino.alugames.modelo.criaJogo
 import br.com.aquino.alugames.utilitario.criaGamer
+import br.com.aquino.alugames.utilitario.criaJogo
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import org.example.br.com.aquino.alugames.modelo.InfoJogo

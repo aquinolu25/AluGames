@@ -18,7 +18,11 @@ data class Jogo(val titulo:String, val capa:String): Recomendavel {
         get() = listaNotas.average()
 
     override fun recomendar(nota: Int) {
-        listaNotas.add(nota)
+        if (nota < 1 || nota > 10) {
+            println("Nota inválida, insira uma nota entre 1 e 10")
+        } else {
+            listaNotas.add(nota)
+        }
     }
 
     override fun toString(): String {
@@ -26,7 +30,8 @@ data class Jogo(val titulo:String, val capa:String): Recomendavel {
                 "Título: $titulo,\n" +
                 "Capa: $capa \n" +
                 "Preço: $preco\n" +
-                "Descricao: $descricao"
+                "Descricao: $descricao\n" +
+                "Reputação: $media"
     }
 
 }

@@ -41,13 +41,42 @@ fun main() {
     gamerCamila.alugaJogo(jogoSpider, periodo2)
     gamerCamila.alugaJogo(jogoTheLastOfUs, periodo3)
     gamerCamila.alugaJogo(jogoTheLastOfUs, periodo1)
-    println(gamerCamila.jogosAlugados)
+//    println(gamerCamila.jogosAlugados)
 
     gamerCamila.recomendar(7)
     gamerCamila.recomendar(10)
     gamerCamila.recomendar(8)
-    println(gamerCamila)
+//    println(gamerCamila)
 
     gamerCamila.alugaJogo(jogoResidentVillage, periodo1)
-    println(gamerCamila.jogosAlugados)
+//    println(gamerCamila.jogosAlugados)
+
+    gamerCamila.recomendarJogo(jogoResidentVillage, 7)
+    gamerCamila.recomendarJogo(jogoTheLastOfUs, 10)
+
+    gamerCaroline.recomendarJogo(jogoResidentVillage, 8)
+    gamerCaroline.recomendarJogo(jogoTheLastOfUs, 9)
+
+    println("Recomendações da Camila: ")
+    println(gamerCamila.jogosRecomendados)
+    println("Recomendações da Caroline: ")
+    println(gamerCaroline.jogosRecomendados)
+
+
+    val jogoDandara = listaJogoJson.get(5)
+    val jogoAssassins = listaJogoJson.get(4)
+    val jogoCyber = listaJogoJson.get(6)
+    val jogoGod = listaJogoJson.get(7)
+    val jogoSkyrim = listaJogoJson.get(18)
+
+    gamerCamila.recomendarJogo(jogoResidentVillage, 7)
+    gamerCamila.recomendarJogo(jogoTheLastOfUs, 10)
+    gamerCamila.recomendarJogo(jogoAssassins, 8)
+    gamerCamila.recomendarJogo(jogoCyber, 7)
+    gamerCamila.recomendarJogo(jogoGod, 10)
+    gamerCamila.recomendarJogo(jogoDandara, 8)
+    gamerCamila.recomendarJogo(jogoSkyrim, 8)
+    gamerCamila.recomendarJogo(jogoSpider, 6)
+
+
 }

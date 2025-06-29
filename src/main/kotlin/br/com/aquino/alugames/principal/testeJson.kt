@@ -3,6 +3,8 @@ package br.com.aquino.alugames.principal
 import br.com.aquino.alugames.modelo.Periodo
 import br.com.aquino.alugames.modelo.PlanoAssinatura
 import br.com.aquino.alugames.servicos.ConsumoApi
+import com.google.gson.GsonBuilder
+import java.io.File
 import java.time.LocalDate
 
 fun main() {
@@ -78,5 +80,12 @@ fun main() {
     gamerCamila.recomendarJogo(jogoSkyrim, 8)
     gamerCamila.recomendarJogo(jogoSpider, 6)
 
+    val gson = GsonBuilder().excludeFieldsWithoutExposeAnnotation().create()
+    val serializacao = gson.toJson(gamerCamila.jogosRecomendados)
+    println(serializacao)
+
+    val arquivo = File("jogosRecomendados.json")
+    arquivo.writeText(serializacao)
+    println(arquivo.absolutePath)
 
 }

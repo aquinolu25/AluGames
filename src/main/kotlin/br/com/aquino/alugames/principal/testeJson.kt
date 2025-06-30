@@ -37,7 +37,7 @@ fun main() {
 //   println(gamerCaroline.jogosAlugados)
 
     val gamerCamila = listaGamers.get(5)
-    gamerCamila.plano = PlanoAssinatura("PRATA", 9.90,3, 0.15)
+//    gamerCamila.plano = PlanoAssinatura("PRATA", 9.90,3, 0.15)
 
     gamerCamila.alugaJogo(jogoResidentVillage, periodo1)
     gamerCamila.alugaJogo(jogoSpider, periodo2)
@@ -84,7 +84,7 @@ fun main() {
     val serializacao = gson.toJson(gamerCamila.jogosRecomendados)
     println(serializacao)
 
-    val arquivo = File("jogosRecomendados.json")
+    val arquivo = File("jogosRecomendados-${gamerCamila.nome}.json")
     arquivo.writeText(serializacao)
     println(arquivo.absolutePath)
 
